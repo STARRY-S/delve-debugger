@@ -1,6 +1,7 @@
 include versions
 
-IMAGE_NAME=ghcr.io/moio/delve-debugger
+# IMAGE_NAME=ghcr.io/moio/delve-debugger
+IMAGE_NAME=hxstarrys/delve-debugger
 
 K3D_IMPORT_CLUSTER=upstream
 

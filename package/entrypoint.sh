@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -ex
 
-PID=`pgrep $EXECUTABLE`
+if [[ -e '$PID' ]]; then
+    PID=`pgrep $EXECUTABLE`
+fi
 
 # HACK: make sure the debugger runs with the same UID and GID of the target executable
 #
