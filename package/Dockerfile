@@ -1,10 +1,12 @@
-FROM registry.suse.com/suse/sle15:15.4
+FROM registry.suse.com/suse/sle15:15.5
 
 ARG GO_VERSION
 ARG DLV_VERSION
 
-RUN zypper --non-interactive install --no-recommends go${GO_VERSION} git sudo
+ENV PATH $PATH:/usr/local/go/bin
 
+RUN zypper --non-interactive install --no-recommends git sudo wget
+RUN wget -O - https://storage.googleapis.com/golang/go1.16.4.linux-amd64.tar.gz | tar -xzf - -C /usr/local
 RUN CGO_ENABLED=0 go install -ldflags '-extldflags -static' github.com/go-delve/delve/cmd/dlv@v${DLV_VERSION}
 RUN mv /root/go/bin/dlv /usr/bin
 
